@@ -18,7 +18,7 @@ local function toEditableMesh(file: buffer): EditableMesh
 			local y = tonumber(arguments[3])
 			local z = tonumber(arguments[4])
 
-			assert(x ~= nil and y ~= nil and z ~= nil, "invalid OBJ file")
+			assert(x ~= nil and y ~= nil and z ~= nil, "invalid WavefrontOBJ file")
 
 			local vertexId = editableMesh:AddVertex(Vector3.new(x, y, z))
 			table.insert(vertices, vertexId)
@@ -26,7 +26,7 @@ local function toEditableMesh(file: buffer): EditableMesh
 			local u = tonumber(arguments[2])
 			local v = tonumber(arguments[3])
 
-			assert(u ~= nil and v ~= nil, "invalid OBJ file")
+			assert(u ~= nil and v ~= nil, "invalid WavefrontOBJ file")
 
 			-- no texture support (yet?)
 		elseif opcode == "vn" then
@@ -34,7 +34,7 @@ local function toEditableMesh(file: buffer): EditableMesh
 			local y = tonumber(arguments[3])
 			local z = tonumber(arguments[4])
 
-			assert(x ~= nil and y ~= nil and z ~= nil, "invalid OBJ file")
+			assert(x ~= nil and y ~= nil and z ~= nil, "invalid WavefrontOBJ file")
 
 			table.insert(normals, x)
 			table.insert(normals, y)
@@ -49,7 +49,7 @@ local function toEditableMesh(file: buffer): EditableMesh
 				local _textureId = tonumber(faceElement[2])
 				local normalId = tonumber(faceElement[3])
 
-				assert(serialVertexId ~= nil, "invalid OBJ file")
+				assert(serialVertexId ~= nil, "invalid WavefrontOBJ file")
 
 				table.insert(triangleVertexIds, vertices[serialVertexId])
 
@@ -58,7 +58,7 @@ local function toEditableMesh(file: buffer): EditableMesh
 					local normalY = normals[normalId * 3 - 1]
 					local normalZ = normals[normalId * 3]
 
-					assert(normalX ~= nil and normalY ~= nil and normalZ ~= nil, "invalid OBJ file")
+					assert(normalX ~= nil and normalY ~= nil and normalZ ~= nil, "invalid WavefrontOBJ file")
 
 					editableMesh:SetVertexNormal(vertices[serialVertexId], Vector3.new(normalX, normalY, normalZ))
 				end

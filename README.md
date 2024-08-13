@@ -8,5 +8,5 @@ local file = [[
 ...
 ]]
 
-local editableMesh = shapeshifter.OBJ.toEditableMesh(file)
+local editableImage = shapeshifter.generateEditableMesh(file, "WavefrontOBJ")
 ```
